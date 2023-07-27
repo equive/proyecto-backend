@@ -14,18 +14,18 @@ model author {
 }
 
 model book {
-  id          Int        @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   title       String?
   pages       Int?
   pice        Float?
   size        String?
   date        DateTime?  @db.Date
-  idGenre     Int        @id
+  idGenre     Int?
   idAuthor    Int?
   idEditorial Int?
   author      author?    @relation(fields: [idAuthor], references: [id], onDelete: NoAction, onUpdate: NoAction)
   editorial   editorial? @relation(fields: [idEditorial], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  genre       genre      @relation(fields: [idGenre], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  genre       genre?     @relation(fields: [idGenre], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model editorial {
@@ -37,5 +37,5 @@ model editorial {
 model genre {
   id    Int     @id @default(autoincrement())
   genre String?
-  book  book?
+  book  book[]
 }
