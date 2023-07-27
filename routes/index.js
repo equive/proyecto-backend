@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+
+
 var express = require('express');
 var router = express.Router();
-
+const { PrismaClient } = require("@prisma/client");
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
